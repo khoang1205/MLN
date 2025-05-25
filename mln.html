@@ -1,0 +1,746 @@
+ 
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ý Thức Xã Hội - Triết học Mác-Lênin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#7775F5',
+                            DEFAULT: '#5D5CDE',
+                            dark: '#4240C9'
+                        },
+                        secondary: {
+                            light: '#FF6B6B',
+                            DEFAULT: '#E63946',
+                            dark: '#D11D2A'
+                        },
+                        accent: {
+                            light: '#FFD166',
+                            DEFAULT: '#F9C74F',
+                            dark: '#F3B431'
+                        },
+                        light: {
+                            background: '#FFFFFF',
+                            card: '#F9FAFB',
+                            text: '#333333',
+                        },
+                        dark: {
+                            background: '#121212',
+                            card: '#1E1E1E',
+                            text: '#F1F1F1',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                }
+            }
+        }
+
+        // Check for dark mode preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+   
+</head>
+<body class="bg-light-background dark:bg-dark-background text-light-text dark:text-dark-text transition-colors duration-200">
+    <header class="bg-gradient-to-r from-primary-dark to-primary py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-center text-white drop-shadow-md">Ý Thức Xã Hội</h1>
+            <p class="text-xl text-center mt-2 text-white/90">Triết học Mác-Lênin</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Sidebar/TOC -->
+            <aside class="md:w-1/4 md:h-screen md:sticky md:top-4 space-y-4">
+                <div class="bg-light-card dark:bg-dark-card p-5 rounded-xl shadow-lg">
+                    <h2 class="text-xl font-bold mb-4 text-primary-dark section-title">Mục lục</h2>
+                    <nav class="space-y-3 mt-6 custom-scrollbar">
+                        <a href="#hoat-dong-mo" class="nav-item flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                            <i class="fas fa-gamepad text-primary"></i>
+                            <span>1. Hoạt động mở</span>
+                        </a>
+                        <a href="#noi-dung" class="nav-item flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                            <i class="fas fa-book-open text-primary"></i>
+                            <span>2. Nội dung</span>
+                        </a>
+                        <a href="#tra-loi-cau-hoi" class="nav-item flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                            <i class="fas fa-question-circle text-primary"></i>
+                            <span>3. Trả lời câu hỏi CQ</span>
+                        </a>
+                        <a href="#hoat-dong-ket" class="nav-item flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                            <i class="fas fa-clipboard-check text-primary"></i>
+                            <span>4. Hoạt động kết</span>
+                        </a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Main content -->
+            <div class="md:w-3/4 space-y-8">
+                <!-- Opening Activity Section -->
+                <section id="hoat-dong-mo" class="bg-gradient-to-br from-light-card to-white dark:from-dark-card dark:to-gray-900 p-6 rounded-xl shadow-lg fade-in">
+                    <h2 class="text-2xl font-bold mb-6 text-primary-dark section-title">1. Hoạt động mở</h2>
+                    
+                    <div class="mt-8">
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-bold">Trò chơi: Kéo-thả nối khái niệm với định nghĩa</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mt-2">Hãy kéo các khái niệm bên trái và thả vào ô định nghĩa tương ứng bên phải</p>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row gap-6 max-w-4xl mx-auto">
+                            <div id="terms-container" class="md:w-1/2 space-y-3">
+                                <!-- Terms will be generated here -->
+                            </div>
+                            <div id="definitions-container" class="md:w-1/2 space-y-3">
+                                <!-- Definitions will be generated here -->
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-8">
+                            <button id="check-answers" class="bg-secondary hover:bg-secondary-dark text-white font-bold py-2 px-6 rounded-full transition-colors shadow-md mr-3">
+                                <i class="fas fa-check mr-2"></i> Kiểm tra
+                            </button>
+                            <button id="reset-game" class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-6 rounded-full transition-colors shadow-md">
+                                <i class="fas fa-redo mr-2"></i> Chơi lại
+                            </button>
+                            <div id="game-status" class="mt-4 text-lg font-medium"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Content Section -->
+                <section id="noi-dung" class="space-y-8 fade-in">
+                    <!-- Visual relationship diagram -->
+                    <div class="bg-gradient-to-br from-light-card to-white dark:from-dark-card dark:to-gray-900 p-6 rounded-xl shadow-lg">
+                        <h2 class="text-2xl font-bold mb-6 text-primary-dark section-title">2. Nội dung</h2>
+                        
+                        <div class="mt-8">
+                            <h3 class="text-xl font-bold mb-6 text-center">Mối quan hệ biện chứng</h3>
+                            <div class="flex flex-col items-center space-y-8">
+                                <div class="concept-card bg-gradient-to-r from-primary to-primary-dark text-white p-6 rounded-lg w-full max-w-md text-center shadow-lg shine-effect">
+                                    <div class="relative z-10">
+                                        <i class="fas fa-industry text-4xl mb-3 opacity-80"></i>
+                                        <h3 class="text-xl font-bold">Tồn tại xã hội</h3>
+                                        <p class="mt-2">Toàn bộ sinh hoạt vật chất, điều kiện sinh sống của con người</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="relationship-arrow h-16 flex items-center justify-center w-full">
+                                    <div class="flex flex-row justify-center w-full gap-4">
+                                        <div class="text-sm text-center px-3 py-1 bg-primary bg-opacity-10 dark:bg-opacity-20 border border-primary rounded-full shadow-sm">
+                                            <i class="fas fa-arrow-down mr-1"></i> Quyết định
+                                        </div>
+                                        <div class="text-sm text-center px-3 py-1 bg-secondary bg-opacity-10 dark:bg-opacity-20 border border-secondary rounded-full shadow-sm">
+                                            <i class="fas fa-arrow-up mr-1"></i> Phản ánh
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="concept-card bg-gradient-to-r from-secondary to-secondary-dark text-white p-6 rounded-lg w-full max-w-md text-center shadow-lg shine-effect">
+                                    <div class="relative z-10">
+                                        <i class="fas fa-brain text-4xl mb-3 opacity-80"></i>
+                                        <h3 class="text-xl font-bold">Ý thức xã hội</h3>
+                                        <p class="mt-2">Sự phản ánh của tồn tại xã hội vào trong tư duy, nhận thức</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tồn tại xã hội -->
+                    <div class="bg-gradient-to-br from-light-card to-white dark:from-dark-card dark:to-gray-900 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6 text-primary-dark section-title">Tồn tại xã hội</h3>
+                        
+                        <div class="mt-8 space-y-6">
+                            <div class="rounded-lg border border-primary/20 p-5 hover:border-primary/50 transition-all">
+                                <h4 class="text-xl font-bold mb-3 flex items-center">
+                                    <i class="fas fa-book text-primary mr-2"></i>
+                                    Khái niệm tồn tại xã hội
+                                </h4>
+                                <ul class="space-y-2 pl-6 list-disc marker:text-primary">
+                                    <li>Là toàn bộ sinh hoạt vật chất, điều kiện sinh sống của con người trong xã hội (môi trường, kinh tế, dân cư…).</li>
+                                    <li>Là cơ sở hình thành và quyết định ý thức xã hội.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="rounded-lg border border-primary/20 p-5 hover:border-primary/50 transition-all">
+                                <h4 class="text-xl font-bold mb-3 flex items-center">
+                                    <i class="fas fa-cubes text-primary mr-2"></i>
+                                    Các yếu tố cơ bản của tồn tại xã hội
+                                </h4>
+                                <div class="grid md:grid-cols-2 gap-4 mt-4">
+                                    <div class="bg-primary bg-opacity-5 dark:bg-opacity-10 p-5 rounded-lg border border-primary/20">
+                                        <div class="flex items-center mb-2">
+                                            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white mr-3">
+                                                <i class="fas fa-cogs"></i>
+                                            </div>
+                                            <h5 class="font-bold">Phương thức sản xuất:</h5>
+                                        </div>
+                                        <p>Yếu tố trung tâm, quyết định trực tiếp đến ý thức.</p>
+                                    </div>
+                                    <div class="bg-primary bg-opacity-5 dark:bg-opacity-10 p-5 rounded-lg border border-primary/20">
+                                        <div class="flex items-center mb-2">
+                                            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white mr-3">
+                                                <i class="fas fa-globe-americas"></i>
+                                            </div>
+                                            <h5 class="font-bold">Điều kiện tự nhiên, dân số, địa lý:</h5>
+                                        </div>
+                                        <p>Ảnh hưởng gián tiếp nhưng quan trọng.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ý thức xã hội -->
+                    <div class="bg-gradient-to-br from-light-card to-white dark:from-dark-card dark:to-gray-900 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6 text-primary-dark section-title">Ý thức xã hội</h3>
+                        
+                        <div class="mt-8 space-y-6">
+                            <div class="rounded-lg border border-secondary/20 p-5 hover:border-secondary/50 transition-all">
+                                <h4 class="text-xl font-bold mb-3 flex items-center">
+                                    <i class="fas fa-lightbulb text-secondary mr-2"></i>
+                                    Khái niệm ý thức xã hội
+                                </h4>
+                                <ul class="space-y-2 pl-6 list-disc marker:text-secondary">
+                                    <li>Là sự phản ánh của tồn tại xã hội vào trong tư duy, nhận thức của con người.</li>
+                                    <li>Bao gồm tri thức, tư tưởng, tình cảm, tâm lý, đạo đức, tôn giáo, triết học…</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="rounded-lg border border-secondary/20 p-5 hover:border-secondary/50 transition-all">
+                                <h4 class="text-xl font-bold mb-3 flex items-center">
+                                    <i class="fas fa-puzzle-piece text-secondary mr-2"></i>
+                                    Kết cấu của ý thức xã hội
+                                </h4>
+                                <div class="grid md:grid-cols-2 gap-4 mt-4">
+                                    <div class="bg-secondary bg-opacity-5 dark:bg-opacity-10 p-5 rounded-lg border border-secondary/20">
+                                        <div class="flex items-center mb-2">
+                                            <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white mr-3">
+                                                <i class="fas fa-heart"></i>
+                                            </div>
+                                            <h5 class="font-bold">Tâm lý xã hội:</h5>
+                                        </div>
+                                        <p>Cảm xúc, thói quen, tập quán.</p>
+                                    </div>
+                                    <div class="bg-secondary bg-opacity-5 dark:bg-opacity-10 p-5 rounded-lg border border-secondary/20">
+                                        <div class="flex items-center mb-2">
+                                            <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white mr-3">
+                                                <i class="fas fa-university"></i>
+                                            </div>
+                                            <h5 class="font-bold">Hệ tư tưởng xã hội:</h5>
+                                        </div>
+                                        <p>Gồm đạo đức, tôn giáo, nghệ thuật, pháp luật, triết học...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="rounded-lg border border-secondary/20 p-5 hover:border-secondary/50 transition-all">
+                                <h4 class="text-xl font-bold mb-3 flex items-center">
+                                    <i class="fas fa-users text-secondary mr-2"></i>
+                                    Tính giai cấp của ý thức xã hội
+                                </h4>
+                                <p>Mỗi giai cấp có hệ tư tưởng riêng phản ánh lợi ích và vị trí của mình trong xã hội.</p>
+                            </div>
+                            
+                            <div class="rounded-lg border border-secondary/20 p-5 hover:border-secondary/50 transition-all">
+                                <h4 class="text-xl font-bold mb-3 flex items-center">
+                                    <i class="fas fa-sync-alt text-secondary mr-2"></i>
+                                    Quan hệ biện chứng giữa tồn tại xã hội và ý thức xã hội
+                                </h4>
+                                <ul class="space-y-2 pl-6 list-disc marker:text-secondary">
+                                    <li>Tồn tại xã hội quyết định ý thức xã hội.</li>
+                                    <li>Ý thức xã hội có tính độc lập tương đối và có thể tác động ngược trở lại.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="rounded-lg border border-secondary/20 p-5 hover:border-secondary/50 transition-all">
+                                <h4 class="text-xl font-bold mb-3 flex items-center">
+                                    <i class="fas fa-shapes text-secondary mr-2"></i>
+                                    Các hình thái ý thức xã hội
+                                </h4>
+                                <p class="mb-2">Triết học, đạo đức, pháp luật, nghệ thuật, tôn giáo, khoa học…</p>
+                                <p>Mỗi hình thái phản ánh hiện thực từ một góc độ và chức năng riêng.</p>
+                            </div>
+                            
+                            <div class="rounded-lg border border-secondary/20 p-5 hover:border-secondary/50 transition-all">
+                                <h4 class="text-xl font-bold mb-3 flex items-center">
+                                    <i class="fas fa-rocket text-secondary mr-2"></i>
+                                    Tính độc lập tương đối của ý thức xã hội
+                                </h4>
+                                <ul class="space-y-2 pl-6 list-disc marker:text-secondary">
+                                    <li>Ý thức xã hội có thể đi trước hoặc tụt hậu so với tồn tại xã hội.</li>
+                                    <li>Có khả năng tác động trở lại quá trình phát triển xã hội.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Empty CQ Section -->
+                <section id="tra-loi-cau-hoi" class="bg-gradient-to-br from-light-card to-white dark:from-dark-card dark:to-gray-900 p-6 rounded-xl shadow-lg fade-in">
+                    <h2 class="text-2xl font-bold mb-6 text-primary-dark section-title">3. Trả lời câu hỏi CQ</h2>
+                    
+                    <div class="mt-8 p-6 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg text-center">
+                        <i class="fas fa-edit text-4xl text-gray-400 dark:text-gray-600 mb-4"></i>
+                        <p class="text-gray-500 dark:text-gray-400">Phần này sẽ được điền sau</p>
+                    </div>
+                </section>
+
+                <!-- Closing Activity Section -->
+   
+                <section id="hoat-dong-ket" class="bg-gradient-to-br from-light-card to-white dark:from-dark-card dark:to-gray-900 p-6 rounded-xl shadow-lg fade-in">
+                    <h2 class="text-2xl font-bold mb-6 text-primary-dark section-title">4. Hoạt động kết</h2>
+                    
+                    <div class="mt-8">
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-bold">Bài tập khởi động: Trắc nghiệm đúng/sai</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mt-2">Hãy chọn đúng hoặc sai cho các phát biểu sau về mối quan hệ giữa con người và xã hội</p>
+                        </div>
+                        
+                        <div id="quiz-container" class="max-w-3xl mx-auto">
+                            <div class="quiz-progress mb-4 bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="progress-bar bg-primary h-2.5 rounded-full" style="width: 0%"></div>
+                            </div>
+                            
+                            <div id="question-container" class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md mb-4">
+                                <!-- Questions will be dynamically inserted here -->
+                            </div>
+                            
+                            <div class="flex justify-between mt-6">
+                                <button id="prev-button" class="bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-bold py-2 px-6 rounded-full transition-colors shadow-md disabled:opacity-50 disabled:cursor-not-allowed">
+                                    <i class="fas fa-arrow-left mr-2"></i> Trước
+                                </button>
+                                <button id="next-button" class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-6 rounded-full transition-colors shadow-md">
+                                    Tiếp <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                            
+                            <div id="quiz-results" class="mt-6 text-center hidden">
+                                <h3 class="text-xl font-bold mb-4">Kết quả</h3>
+                                <div class="p-4 rounded-lg bg-gray-100 dark:bg-gray-800">
+                                    <p class="text-lg">Bạn trả lời đúng <span id="correct-count" class="font-bold text-primary-dark">0</span> trên <span id="total-count" class="font-bold">5</span> câu hỏi.</p>
+                                </div>
+                                <button id="restart-quiz" class="mt-4 bg-secondary hover:bg-secondary-dark text-white font-bold py-2 px-6 rounded-full transition-colors shadow-md">
+                                    <i class="fas fa-redo mr-2"></i> Làm lại
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-6 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2023 Triết học Mác-Lênin</p>
+            <p class="text-sm text-gray-400 mt-2">Thiết kế bởi Khoa Ng</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ======== OPENING ACTIVITY: TRUE/FALSE QUIZ ========
+            const quizQuestions = [
+        {
+            question: "Hiện tượng tự nhiên như thời tiết, địa hình là một phần của tồn tại xã hội nếu chúng ảnh hưởng đến đời sống con người.",
+            answer: true,
+            explanation: "Đúng! Điều kiện tự nhiên khi tác động đến đời sống con người trở thành một phần của tồn tại xã hội."
+        },
+        {
+            question: "Ý thức xã hội có thể phản ánh chính xác hoàn toàn tồn tại xã hội mà không có bất kỳ sự biến đổi nào.",
+            answer: false,
+            explanation: "Sai! Ý thức xã hội không thể phản ánh chính xác hoàn toàn tồn tại xã hội, luôn có sự biến đổi trong quá trình phản ánh."
+        },
+        {
+            question: "Tư tưởng con người luôn phát triển đi sau sự thay đổi của tồn tại xã hội.",
+            answer: false,
+            explanation: "Sai! Ý thức xã hội có tính độc lập tương đối và có thể đi trước hoặc tụt hậu so với tồn tại xã hội."
+        },
+        {
+            question: "Phương thức sản xuất là yếu tố trung tâm của tồn tại xã hội.",
+            answer: true,
+            explanation: "Đúng! Phương thức sản xuất là yếu tố trung tâm và quyết định nhất của tồn tại xã hội."
+        },
+        {
+            question: "Những tác phẩm văn học, nghệ thuật chỉ phản ánh quan điểm cá nhân của tác giả mà không liên quan đến tồn tại xã hội.",
+            answer: false,
+            explanation: "Sai! Các tác phẩm văn học, nghệ thuật đều ít nhiều phản ánh tồn tại xã hội, dù qua lăng kính cá nhân của tác giả."
+        },
+        {
+            question: "Ý thức xã hội chỉ bao gồm các khái niệm tri thức mà không liên quan đến cảm xúc hay tâm lý.",
+            answer: false,
+            explanation: "Sai! Ý thức xã hội bao gồm tri thức, tư tưởng, tình cảm, tâm lý, đạo đức, tôn giáo, triết học..."
+        },
+        {
+            question: "Mỗi giai cấp trong xã hội đều có hệ tư tưởng riêng phản ánh lợi ích và vị trí của mình.",
+            answer: true,
+            explanation: "Đúng! Mỗi giai cấp có hệ tư tưởng riêng phản ánh lợi ích và vị trí của mình trong xã hội."
+        }
+    ];
+            
+            let currentQuestionIndex = 0;
+            let userAnswers = [];
+            
+            const questionContainer = document.getElementById('question-container');
+            const prevButton = document.getElementById('prev-button');
+            const nextButton = document.getElementById('next-button');
+            const progressBar = document.querySelector('.progress-bar');
+            const quizResults = document.getElementById('quiz-results');
+            const correctCount = document.getElementById('correct-count');
+            const totalCount = document.getElementById('total-count');
+            const restartQuiz = document.getElementById('restart-quiz');
+            
+            function renderQuestion() {
+                const question = quizQuestions[currentQuestionIndex];
+                const userAnswer = userAnswers[currentQuestionIndex];
+                
+                let content = `
+                    <h3 class="text-lg font-bold mb-4">Câu hỏi ${currentQuestionIndex + 1}/${quizQuestions.length}</h3>
+                    <p class="mb-6">${question.question}</p>
+                    <div class="space-y-3">
+                `;
+                
+                // True option
+                content += `
+                    <div class="quiz-option border rounded-lg p-4 flex items-center ${userAnswer === true ? 'selected' : ''}" data-value="true">
+                        <div class="w-6 h-6 rounded-full border-2 ${userAnswer === true ? 'border-primary bg-primary/20' : 'border-gray-300'} flex items-center justify-center mr-3">
+                            ${userAnswer === true ? '<i class="fas fa-check text-primary text-sm"></i>' : ''}
+                        </div>
+                        <span>Đúng</span>
+                    </div>
+                `;
+                
+                // False option
+                content += `
+                    <div class="quiz-option border rounded-lg p-4 flex items-center ${userAnswer === false ? 'selected' : ''}" data-value="false">
+                        <div class="w-6 h-6 rounded-full border-2 ${userAnswer === false ? 'border-primary bg-primary/20' : 'border-gray-300'} flex items-center justify-center mr-3">
+                            ${userAnswer === false ? '<i class="fas fa-check text-primary text-sm"></i>' : ''}
+                        </div>
+                        <span>Sai</span>
+                    </div>
+                `;
+                
+                content += `</div>`;
+                
+                // Show explanation if user has answered
+                if (userAnswer !== undefined) {
+                    const isCorrect = userAnswer === question.answer;
+                    content += `
+                        <div class="mt-6 p-4 rounded-lg ${isCorrect ? 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-200' : 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-200'}">
+                            <div class="flex items-start">
+                                <div class="mr-3">
+                                    ${isCorrect 
+                                        ? '<i class="fas fa-check-circle text-green-600 dark:text-green-400 text-xl"></i>' 
+                                        : '<i class="fas fa-times-circle text-red-600 dark:text-red-400 text-xl"></i>'}
+                                </div>
+                                <div>
+                                    <p class="font-bold">${isCorrect ? 'Đúng!' : 'Sai!'}</p>
+                                    <p>${question.explanation}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                questionContainer.innerHTML = content;
+                
+                // Update progress bar
+                const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+                progressBar.style.width = `${progress}%`;
+                
+                // Update button states
+                prevButton.disabled = currentQuestionIndex === 0;
+                nextButton.textContent = currentQuestionIndex === quizQuestions.length - 1 ? 'Kết thúc' : 'Tiếp';
+                nextButton.disabled = userAnswers[currentQuestionIndex] === undefined;
+                
+                // Add event listeners to options
+                document.querySelectorAll('.quiz-option').forEach(option => {
+                    option.addEventListener('click', () => {
+                        const value = option.dataset.value === 'true';
+                        userAnswers[currentQuestionIndex] = value;
+                        renderQuestion();
+                        nextButton.disabled = false;
+                    });
+                });
+            }
+            
+            function showResults() {
+                let count = 0;
+                userAnswers.forEach((answer, index) => {
+                    if (answer === quizQuestions[index].answer) {
+                        count++;
+                    }
+                });
+                
+                correctCount.textContent = count;
+                totalCount.textContent = quizQuestions.length;
+                quizResults.classList.remove('hidden');
+                
+                // Hide question container and navigation
+                questionContainer.classList.add('hidden');
+                prevButton.classList.add('hidden');
+                nextButton.classList.add('hidden');
+            }
+            
+            function startQuiz() {
+                currentQuestionIndex = 0;
+                userAnswers = new Array(quizQuestions.length);
+                quizResults.classList.add('hidden');
+                questionContainer.classList.remove('hidden');
+                prevButton.classList.remove('hidden');
+                nextButton.classList.remove('hidden');
+                renderQuestion();
+            }
+            
+            // Event listeners for quiz navigation
+            prevButton.addEventListener('click', () => {
+                if (currentQuestionIndex > 0) {
+                    currentQuestionIndex--;
+                    renderQuestion();
+                }
+            });
+            
+            nextButton.addEventListener('click', () => {
+                if (currentQuestionIndex < quizQuestions.length - 1) {
+                    currentQuestionIndex++;
+                    renderQuestion();
+                } else {
+                    showResults();
+                }
+            });
+            
+            restartQuiz.addEventListener('click', startQuiz);
+            
+            // Initialize quiz
+            startQuiz();
+            
+            // ======== CLOSING ACTIVITY: DRAG AND DROP MATCHING ========
+            const concepts = [
+                { id: 1, term: "Tồn tại xã hội", definition: "Toàn bộ sinh hoạt vật chất của con người" },
+                { id: 2, term: "Ý thức xã hội", definition: "Sự phản ánh tồn tại xã hội vào tư duy" },
+                { id: 3, term: "Phương thức sản xuất", definition: "Yếu tố trung tâm của tồn tại xã hội" },
+                { id: 4, term: "Tính độc lập tương đối", definition: "Ý thức có thể tác động ngược lại tồn tại xã hội" }
+            ];
+            
+            const termsContainer = document.getElementById('terms-container');
+            const definitionsContainer = document.getElementById('definitions-container');
+            const checkButton = document.getElementById('check-answers');
+            const resetButton = document.getElementById('reset-game');
+            const gameStatus = document.getElementById('game-status');
+            
+            // Set up the game
+            function setupGame() {
+                termsContainer.innerHTML = '';
+                definitionsContainer.innerHTML = '';
+                gameStatus.textContent = '';
+                gameStatus.className = 'mt-4 text-lg font-medium';
+                
+                // Create terms (draggable elements)
+                const shuffledTerms = [...concepts].sort(() => Math.random() - 0.5);
+                shuffledTerms.forEach(concept => {
+                    const termElement = document.createElement('div');
+                    termElement.className = 'draggable bg-primary text-white p-4 rounded-lg shadow-md';
+                    termElement.setAttribute('draggable', 'true');
+                    termElement.dataset.id = concept.id;
+                    termElement.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-grip-lines mr-2"></i>
+                            <span>${concept.term}</span>
+                        </div>
+                    `;
+                    
+                    // Add drag event listeners
+                    termElement.addEventListener('dragstart', dragStart);
+                    termElement.addEventListener('dragend', dragEnd);
+                    
+                    termsContainer.appendChild(termElement);
+                });
+                
+                // Create definitions (drop zones)
+                const shuffledDefinitions = [...concepts].sort(() => Math.random() - 0.5);
+                shuffledDefinitions.forEach(concept => {
+                    const definitionElement = document.createElement('div');
+                    definitionElement.className = 'drop-zone p-4 rounded-lg flex flex-col';
+                    definitionElement.dataset.id = concept.id;
+                    definitionElement.innerHTML = `
+                        <div class="text-gray-700 dark:text-gray-300 mb-2">${concept.definition}</div>
+                        <div class="dropped-item-container min-h-[40px] rounded-lg"></div>
+                    `;
+                    
+                    // Add drop event listeners
+                    definitionElement.addEventListener('dragover', dragOver);
+                    definitionElement.addEventListener('dragenter', dragEnter);
+                    definitionElement.addEventListener('dragleave', dragLeave);
+                    definitionElement.addEventListener('drop', drop);
+                    
+                    definitionsContainer.appendChild(definitionElement);
+                });
+            }
+            
+            // Drag and drop functions
+            function dragStart(e) {
+                this.classList.add('dragging');
+                e.dataTransfer.setData('text/plain', this.dataset.id);
+            }
+            
+            function dragEnd() {
+                this.classList.remove('dragging');
+            }
+            
+            function dragOver(e) {
+                e.preventDefault();
+            }
+            
+            function dragEnter(e) {
+                e.preventDefault();
+                this.classList.add('drag-over');
+            }
+            
+            function dragLeave() {
+                this.classList.remove('drag-over');
+            }
+            
+            function drop(e) {
+                e.preventDefault();
+                const id = e.dataTransfer.getData('text/plain');
+                const draggable = document.querySelector(`.draggable[data-id="${id}"]`);
+                
+                this.classList.remove('drag-over');
+                
+                // Check if this drop zone already has an item
+                const container = this.querySelector('.dropped-item-container');
+                if (container.children.length === 0) {
+                    // Clone the draggable to avoid removing it from the original container
+                    const clone = draggable.cloneNode(true);
+                    clone.classList.add('mb-2');
+                    
+                    // Remove the draggable attribute from the clone
+                    clone.removeAttribute('draggable');
+                    
+                    // Add a remove button
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'ml-2 text-xs bg-red-500 hover:bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center';
+                    removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                    removeBtn.addEventListener('click', function() {
+                        clone.remove();
+                        // Reset this drop zone's status
+                        const dropZone = this.closest('.drop-zone');
+                        dropZone.classList.remove('correct', 'incorrect');
+                    });
+                    
+                    clone.querySelector('.flex').appendChild(removeBtn);
+                    container.appendChild(clone);
+                }
+            }
+            
+            // Check answers function
+            function checkAnswers() {
+                let correctCount = 0;
+                const dropZones = document.querySelectorAll('.drop-zone');
+                
+                dropZones.forEach(zone => {
+                    zone.classList.remove('correct', 'incorrect');
+                    const container = zone.querySelector('.dropped-item-container');
+                    
+                    if (container.children.length > 0) {
+                        const droppedItem = container.children[0];
+                        const droppedId = droppedItem.dataset.id;
+                        const zoneId = zone.dataset.id;
+                        
+                        if (droppedId === zoneId) {
+                            zone.classList.add('correct');
+                            correctCount++;
+                        } else {
+                            zone.classList.add('incorrect');
+                        }
+                    }
+                });
+                
+                // Update game status
+                if (correctCount === concepts.length) {
+                    gameStatus.textContent = 'Chúc mừng! Bạn đã nối đúng tất cả các khái niệm.';
+                    gameStatus.className = 'mt-4 text-lg font-medium text-green-600 dark:text-green-400';
+                } else {
+                    gameStatus.textContent = `Bạn đã nối đúng ${correctCount}/${concepts.length} khái niệm. Hãy thử lại!`;
+                    gameStatus.className = 'mt-4 text-lg font-medium text-orange-600 dark:text-orange-400';
+                }
+            }
+            
+            // Initialize the game
+            setupGame();
+            
+            // Event listeners for buttons
+            checkButton.addEventListener('click', checkAnswers);
+            resetButton.addEventListener('click', setupGame);
+            
+            // ======== GENERAL UI FUNCTIONS ========
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Add active class to current nav item
+                        document.querySelectorAll('.nav-item').forEach(item => {
+                            item.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
+            
+            // Highlight current section in navigation based on scroll position
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY + 100; // Add offset
+                
+                document.querySelectorAll('section[id]').forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        document.querySelectorAll('.nav-item').forEach(item => {
+                            item.classList.remove('active');
+                            if (item.getAttribute('href') === `#${sectionId}`) {
+                                item.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
