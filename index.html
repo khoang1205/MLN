@@ -1162,41 +1162,81 @@
             
             // ======== CLOSING ACTIVITY: TRUE/FALSE QUIZ ========
             const quizQuestions = [
-                {
-                    question: "Hiện tượng tự nhiên như thời tiết, địa hình là một phần của tồn tại xã hội nếu chúng ảnh hưởng đến đời sống con người.",
-                    answer: true,
-                    explanation: "Đúng! Điều kiện tự nhiên khi tác động đến đời sống con người trở thành một phần của tồn tại xã hội."
-                },
-                {
-                    question: "Ý thức xã hội có thể phản ánh chính xác hoàn toàn tồn tại xã hội mà không có bất kỳ sự biến đổi nào.",
-                    answer: false,
-                    explanation: "Sai! Ý thức xã hội không thể phản ánh chính xác hoàn toàn tồn tại xã hội, luôn có sự biến đổi trong quá trình phản ánh."
-                },
-                {
-                    question: "Tư tưởng con người luôn phát triển đi sau sự thay đổi của tồn tại xã hội.",
-                    answer: false,
-                    explanation: "Sai! Ý thức xã hội có tính độc lập tương đối và có thể đi trước hoặc tụt hậu so với tồn tại xã hội."
-                },
-                {
-                    question: "Phương thức sản xuất là yếu tố trung tâm của tồn tại xã hội.",
-                    answer: true,
-                    explanation: "Đúng! Phương thức sản xuất là yếu tố trung tâm và quyết định nhất của tồn tại xã hội."
-                },
-                {
-                    question: "Những tác phẩm văn học, nghệ thuật chỉ phản ánh quan điểm cá nhân của tác giả mà không liên quan đến tồn tại xã hội.",
-                    answer: false,
-                    explanation: "Sai! Các tác phẩm văn học, nghệ thuật đều ít nhiều phản ánh tồn tại xã hội, dù qua lăng kính cá nhân của tác giả."
-                },
-                {
-                    question: "Ý thức xã hội chỉ bao gồm các khái niệm tri thức mà không liên quan đến cảm xúc hay tâm lý.",
-                    answer: false,
-                    explanation: "Sai! Ý thức xã hội bao gồm tri thức, tư tưởng, tình cảm, tâm lý, đạo đức, tôn giáo, triết học..."
-                },
-                {
-                    question: "Mỗi giai cấp trong xã hội đều có hệ tư tưởng riêng phản ánh lợi ích và vị trí của mình.",
-                    answer: true,
-                    explanation: "Đúng! Mỗi giai cấp có hệ tư tưởng riêng phản ánh lợi ích và vị trí của mình trong xã hội."
-                }
+              {
+        question: "Tồn tại xã hội là toàn bộ sinh hoạt vật chất và điều kiện sinh hoạt vật chất của xã hội loài người.",
+        answer: true,
+        explanation: "Đúng! Tồn tại xã hội bao gồm điều kiện vật chất, môi trường sống, phương thức sản xuất... của con người."
+    },
+    {
+        question: "Ý thức xã hội là yếu tố độc lập hoàn toàn, không bị chi phối bởi tồn tại xã hội.",
+        answer: false,
+        explanation: "Sai! Ý thức xã hội chịu sự quy định bởi tồn tại xã hội nhưng có tính độc lập tương đối."
+    },
+    {
+        question: "Khi tồn tại xã hội thay đổi, ý thức xã hội cũng nhất thiết thay đổi ngay lập tức theo.",
+        answer: false,
+        explanation: "Sai! Ý thức xã hội có thể thay đổi chậm hơn hoặc nhanh hơn tồn tại xã hội, do tính độc lập tương đối."
+    },
+    {
+        question: "Trong xã hội có giai cấp, hệ tư tưởng thống trị thường là hệ tư tưởng của giai cấp thống trị.",
+        answer: true,
+        explanation: "Đúng! Theo quan điểm Mácxít, hệ tư tưởng của giai cấp thống trị thường chiếm ưu thế trong xã hội."
+    },
+    {
+        question: "Môi trường sống tự nhiên không ảnh hưởng gì đến sự hình thành tồn tại xã hội.",
+        answer: false,
+        explanation: "Sai! Môi trường tự nhiên là yếu tố quan trọng ảnh hưởng đến điều kiện sinh sống và phát triển xã hội."
+    },
+    {
+        question: "Ý thức tôn giáo là một hình thức của ý thức xã hội.",
+        answer: true,
+        explanation: "Đúng! Tôn giáo, cũng như đạo đức, pháp luật, nghệ thuật… đều là các hình thái ý thức xã hội."
+    },
+    {
+        question: "Không thể có sự tác động trở lại từ ý thức xã hội đến tồn tại xã hội.",
+        answer: false,
+        explanation: "Sai! Ý thức xã hội có thể tác động trở lại tồn tại xã hội, thúc đẩy hoặc kìm hãm sự phát triển xã hội."
+    },
+    {
+        question: "Tồn tại xã hội là cái có trước và quyết định ý thức xã hội.",
+        answer: true,
+        explanation: "Đúng! Theo chủ nghĩa duy vật lịch sử, tồn tại xã hội giữ vai trò quyết định đối với ý thức xã hội."
+    },
+    {
+        question: "Chỉ có yếu tố kinh tế mới được coi là tồn tại xã hội.",
+        answer: false,
+        explanation: "Sai! Ngoài yếu tố kinh tế, các điều kiện tự nhiên, dân cư, địa lý... cũng là bộ phận của tồn tại xã hội."
+    },
+    {
+        question: "Một hệ tư tưởng tiến bộ có thể đi trước và thúc đẩy sự phát triển của xã hội.",
+        answer: true,
+        explanation: "Đúng! Ý thức xã hội có thể vượt trước tồn tại xã hội và đóng vai trò tích cực trong cải tạo xã hội."
+    },
+     {
+        question: "Ý thức pháp quyền (pháp luật) là một hình thái cụ thể của ý thức xã hội.",
+        answer: true,
+        explanation: "Đúng! Ý thức pháp luật phản ánh mối quan hệ pháp lý và là một trong các hình thái của ý thức xã hội."
+    },
+    {
+        question: "Sự phát triển của sản xuất vật chất không ảnh hưởng gì đến tư tưởng, văn hóa của xã hội.",
+        answer: false,
+        explanation: "Sai! Sự phát triển sản xuất vật chất là cơ sở nền tảng cho sự biến đổi của tư tưởng và văn hóa."
+    },
+    {
+        question: "Tư tưởng lạc hậu có thể trở thành lực cản đối với sự phát triển của xã hội.",
+        answer: true,
+        explanation: "Đúng! Những tư tưởng lỗi thời, lạc hậu có thể kìm hãm hoặc làm chậm quá trình tiến bộ xã hội."
+    },
+    {
+        question: "Sự phân hóa giai cấp không ảnh hưởng đến ý thức xã hội.",
+        answer: false,
+        explanation: "Sai! Sự phân hóa giai cấp dẫn đến sự hình thành các hệ tư tưởng khác nhau, phản ánh lợi ích của từng giai cấp."
+    },
+    {
+        question: "Ý thức xã hội có thể tồn tại dai dẳng ngay cả khi điều kiện vật chất đã thay đổi.",
+        answer: true,
+        explanation: "Đúng! Một số yếu tố ý thức như phong tục, tín ngưỡng có thể tồn tại lâu dài sau khi tồn tại xã hội đã thay đổi."
+    }
             ];
             
             let currentQuestionIndex = 0;
